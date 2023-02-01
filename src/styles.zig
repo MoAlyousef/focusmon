@@ -14,7 +14,7 @@ pub fn style_app() void {
 }
 
 pub fn style_display(display: *text.TextDisplay) void {
-        const entries = [_]text.StyleTableEntry{
+    const entries = [_]text.StyleTableEntry{
         text.StyleTableEntry {
             .color = enums.Color.fromHex(0x58afef),
             .font = enums.Font.Helvetica,
