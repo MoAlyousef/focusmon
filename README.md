@@ -11,4 +11,4 @@ cd focusmon
 CC="zig cc" CXX="zig c++" zig build
 ```
 
-![image](https://user-images.githubusercontent.com/37966791/215907392-9de27f5b-ca48-4a9b-868f-bd7e09058437.png)
+![image](https://user-images.githubusercontent.com/37966791/216713278-92b20585-df58-41c8-99be-71312ba28b61.png)

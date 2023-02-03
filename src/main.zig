@@ -17,7 +17,7 @@ const styles = @import("styles.zig");
 
 pub fn main() !void {
     try app.init();
-    styles.style_app();
+    styles.styleApp();
     var buf = text.TextBuffer.new();
     var win = window.Window.new(100, 100, 800, 600, "FocusMon");
     const flex = group.Flex.new(2, 2, 796, 596, null);
@@ -26,17 +26,17 @@ pub fn main() !void {
     var mb = menu.MenuBar.new(0,0,0,0, null);
     flex.fixed(&mb.asWidget(), 25);
     mb.asWidget().setBox(.FlatBox);
-    menubar.add_menu_items(&mb, &buf, &win);
+    menubar.addMenuItems(&mb, &buf, &win);
     var display = text.TextDisplay.new(0, 0, 0, 0, null);
     display.setBuffer(&buf);
-    styles.style_display(&display);
+    styles.styleDisplay(&display);
     flex.end();
     win.asGroup().end();
     win.asGroup().resizable(&win.asWidget());
     win.asWidget().show();
     win.asWidget().setCallback(cbs.winCb);
 
-    const thread = std.Thread.spawn(.{}, worker.thread_func, .{&display}) catch {
+    const thread = std.Thread.spawn(.{}, worker.threadFunc, .{&display}) catch {
         return;
     };
     thread.detach();

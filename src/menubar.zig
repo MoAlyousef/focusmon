@@ -5,7 +5,8 @@ const text = zfltk.text;
 const window = zfltk.window;
 const enums = zfltk.enums;
 
-pub fn add_menu_items(m: *menu.MenuBar, buf: *text.TextBuffer, win: *window.Window) void {
+pub fn addMenuItems(m: *menu.MenuBar, buf: *text.TextBuffer, win: *window.Window) void {
+    m.*.asMenu().setTextSize(15);
     m.asMenu().addEx(
         "&File/Save...\t",
         enums.Shortcut.Ctrl | 's',

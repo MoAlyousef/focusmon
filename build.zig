@@ -6,7 +6,7 @@ pub fn build(b: *Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
     const sdk = Sdk.init(b);
-    const exe = b.addExecutable("main", "src/main.zig");
+    const exe = b.addExecutable("focusmon", "src/main.zig");
     exe.addPackagePath("zfltk", "zfltk/src/zfltk.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);

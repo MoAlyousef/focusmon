@@ -5,7 +5,7 @@ const c = @cImport({
     @cInclude("time.h");
 });
 
-pub fn thread_func(data: ?*anyopaque) !void {
+pub fn threadFunc(data: ?*anyopaque) !void {
     if (data) |d| {
         const disp = @ptrCast(*text.TextDisplay, @alignCast(std.meta.alignment(*text.TextDisplay), d));
         const tbuf = disp.buffer();
