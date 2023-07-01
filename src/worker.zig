@@ -7,9 +7,9 @@ const c = @cImport({
 
 pub fn threadFunc(data: ?*anyopaque) !void {
     if (data) |d| {
-        const disp = text.TextDisplay(.normal).fromRaw(d);
-        const tbuf = disp.buffer().?;
-        const sbuf = disp.styleBuffer().?;
+        var disp = text.TextDisplay(.normal).fromRaw(d);
+        var tbuf = disp.buffer().?;
+        var sbuf = disp.styleBuffer().?;
         var last: [1024]u8 = undefined;
         while (true) {
             const hwnd = c.GetForegroundWindow();

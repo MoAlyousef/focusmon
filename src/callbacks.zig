@@ -20,7 +20,7 @@ pub fn saveCb(w: *menu.Menu(.menu_bar), data: ?*anyopaque) void {
     dlg.show();
     const fname = dlg.filename();
     if (!std.mem.eql(u8, fname, "")) {
-        const buf: *text.TextBuffer = @ptrCast(data.?);
+        var buf: *text.TextBuffer = @ptrCast(data.?);
         buf.saveFile(fname) catch unreachable;
     }
 }

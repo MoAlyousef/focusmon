@@ -20,7 +20,7 @@ pub fn main() !void {
     styles.styleApp();
     var buf = try text.TextBuffer.init();
     var win = try window.Window.init(.{.x=100, .y=100, .w = 800, .h = 600, .label = "FocusMon"});
-    const flex = try Group(.flex).init(.{.x = 2, .y = 2, .w = 796, .h = 596, .spacing = 5});
+    var flex = try Group(.flex).init(.{.x = 2, .y = 2, .w = 796, .h = 596, .spacing = 5});
     flex.setMargin(2);
     var mb = try menu.Menu(.menu_bar).init(.{});
     flex.fixed(mb, 25);
