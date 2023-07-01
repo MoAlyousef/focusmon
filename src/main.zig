@@ -6,7 +6,7 @@ const Widget = widget.Widget;
 const window = zfltk.window;
 const enums = zfltk.enums;
 const text = zfltk.text;
-const group = zfltk.group;
+const Group = zfltk.Group;
 const menu = zfltk.menu;
 const dialog = zfltk.dialog;
 
@@ -18,25 +18,24 @@ const styles = @import("styles.zig");
 pub fn main() !void {
     try app.init();
     styles.styleApp();
-    var buf = text.TextBuffer.new();
-    var win = window.Window.new(100, 100, 800, 600, "FocusMon");
-    const flex = group.Flex.new(2, 2, 796, 596, null);
-    flex.setPad(5);
+    var buf = try text.TextBuffer.init();
+    var win = try window.Window.init(.{.x=100, .y=100, .w = 800, .h = 600, .label = "FocusMon"});
+    const flex = try Group(.flex).init(.{.x = 2, .y = 2, .w = 796, .h = 596, .spacing = 5});
     flex.setMargin(2);
-    var mb = menu.MenuBar.new(0,0,0,0, null);
-    flex.fixed(&mb.asWidget(), 25);
-    mb.asWidget().setBox(.FlatBox);
-    menubar.addMenuItems(&mb, &buf, &win);
-    var display = text.TextDisplay.new(0, 0, 0, 0, null);
-    display.setBuffer(&buf);
-    styles.styleDisplay(&display);
+    var mb = try menu.Menu(.menu_bar).init(.{});
+    flex.fixed(mb, 25);
+    mb.setBox(.flat);
+    menubar.addMenuItems(mb, buf, win);
+    var display = try text.TextDisplay(.normal).init(.{});
+    display.setBuffer(buf);
+    styles.styleDisplay(display);
     flex.end();
-    win.asGroup().end();
-    win.asGroup().resizable(&win.asWidget());
-    win.asWidget().show();
-    win.asWidget().setCallback(cbs.winCb);
+    win.end();
+    win.resizable(win);
+    win.show();
+    win.setCallback(cbs.winCb);
 
-    const thread = std.Thread.spawn(.{}, worker.threadFunc, .{&display}) catch {
+    const thread = std.Thread.spawn(.{}, worker.threadFunc, .{display.raw()}) catch {
         return;
     };
     thread.detach();

@@ -1,20 +1,25 @@
 const std = @import("std");
-const Sdk = @import("zfltk/sdk.zig");
-const Builder = std.build.Builder;
+const Sdk = @import("zfltk");
+const Build = std.Build;
 
-pub fn build(b: *Builder) !void {
+pub fn build(b: *Build) !void {
     const target = b.standardTargetOptions(.{});
-    const mode = b.standardReleaseOptions();
-    const sdk = Sdk.init(b);
-    const exe = b.addExecutable("focusmon", "src/main.zig");
-    exe.addPackagePath("zfltk", "zfltk/src/zfltk.zig");
-    exe.setTarget(target);
-    exe.setBuildMode(mode);
-    try sdk.link("zfltk", exe);
-    exe.install();
+    const mode = b.standardOptimizeOption(.{});
+    const exe = b.addExecutable(.{
+        .name = "focusmon",
+        .root_source_file = .{.path = "src/main.zig" },
+        .optimize = mode,
+        .target = target,
+    });
 
-    const run_cmd = exe.run();
-    run_cmd.step.dependOn(b.getInstallStep());
+    const sdk = try Sdk.init(b);
+    const zfltk_module = sdk.getZfltkModule(b);
+    exe.addModule("zfltk", zfltk_module);
+    try sdk.link(exe);
+
+    b.installArtifact(exe);
+
+    const run_cmd = b.addRunArtifact(exe);
     if (b.args) |args| {
         run_cmd.addArgs(args);
     }
