@@ -30,7 +30,7 @@ pub fn threadFunc(data: ?*anyopaque) !void {
                             tbuf.append(&buf);
                             sbuf.append("A" ** 10);
                             const temp = try std.fmt.bufPrintZ(buf[0..], "{s} (pid: {})", .{last[0..buffSize], pid});
-                            tbuf.append(temp);
+                            tbuf.append(@ptrCast(temp));
                             var i: usize = 1;
                             while (i <= temp.len) : (i += 1) {
                                 sbuf.append("B");
