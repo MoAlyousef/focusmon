@@ -1,15 +1,14 @@
 const zfltk = @import("zfltk");
 const app = zfltk.app;
 const enums = zfltk.enums;
-const widget = zfltk.widget;
-const Widget = widget.Widget;
+const Widget = zfltk.widget.Widget;
 const menu = zfltk.menu;
 const dialog = zfltk.dialog;
 const text = zfltk.text;
 const window = zfltk.window;
 const std = @import("std");
 
-pub fn saveCb(w: *menu.Menu(.menu_bar), data: ?*anyopaque) void {
+pub fn saveCb(w: *menu.MenuBar, data: ?*anyopaque) void {
     _ = w;
     var dlg = try dialog.FileDialog(.save_file).init(.{
         .save_as_confirm = true,
@@ -25,13 +24,13 @@ pub fn saveCb(w: *menu.Menu(.menu_bar), data: ?*anyopaque) void {
     }
 }
 
-pub fn quitCb(w: *menu.Menu(.menu_bar), data: ?*anyopaque) void {
+pub fn quitCb(w: *menu.MenuBar, data: ?*anyopaque) void {
     _ = w;
-    const win = widget.Widget.fromRaw(data.?);
+    const win = Widget.fromRaw(data.?);
     win.hide();
 }
 
-pub fn helpCb(w: *menu.Menu(.menu_bar), data: ?*anyopaque) void {
+pub fn helpCb(w: *menu.MenuBar, data: ?*anyopaque) void {
     _ = w;
     _ = data;
     dialog.message(300, 200, "FocusMon was built using fltk and zig!\nYou can find the git repo here:\nhttps://github.com/MoAlyousef/focusmon");

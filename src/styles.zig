@@ -13,7 +13,7 @@ pub fn styleApp() void {
     app.setMenuLinespacing(8);
 }
 
-pub fn styleDisplay(display: *text.TextDisplay(.normal)) void {
+pub fn styleDisplay(display: *text.TextDisplay) void {
     const entries = [_]text.StyleTableEntry{
         text.StyleTableEntry {
             .color = enums.Color.fromHex(0x58afef),

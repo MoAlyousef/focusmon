@@ -3,8 +3,8 @@
     .version = "0.0.1",
     .dependencies = .{
         .zfltk = .{
-            .url = "https://github.com/MoAlyousef/zfltk/archive/refs/tags/pkg0.0.6.tar.gz",
-            .hash = "1220ca0756f0d49e4f5be5776776fb74d359c540251e5bb6cd73b3df9b7f90e30afe",
+            .url = "https://github.com/MoAlyousef/zfltk/archive/refs/tags/pkg0.1.0.tar.gz",
+            .hash = "1220bc42a444f47cb84f597d5989a4198cc8560fcd40212915244682e643681d8300",
         },
     }
 }

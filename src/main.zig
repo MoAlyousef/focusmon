@@ -1,12 +1,11 @@
 const std = @import("std");
 const zfltk = @import("zfltk");
 const app = zfltk.app;
-const widget = zfltk.widget;
-const Widget = widget.Widget;
+const Widget = zfltk.widget.Widget;
 const window = zfltk.window;
 const enums = zfltk.enums;
 const text = zfltk.text;
-const Group = zfltk.Group;
+const Flex = zfltk.group.Flex;
 const menu = zfltk.menu;
 const dialog = zfltk.dialog;
 
@@ -20,13 +19,13 @@ pub fn main() !void {
     styles.styleApp();
     var buf = try text.TextBuffer.init();
     var win = try window.Window.init(.{.x=100, .y=100, .w = 800, .h = 600, .label = "FocusMon"});
-    var flex = try Group(.flex).init(.{.x = 2, .y = 2, .w = 796, .h = 596, .spacing = 5});
+    var flex = try Flex.init(.{.x = 2, .y = 2, .w = 796, .h = 596, .spacing = 5});
     flex.setMargin(2);
-    var mb = try menu.Menu(.menu_bar).init(.{});
+    var mb = try menu.MenuBar.init(.{});
     flex.fixed(mb, 25);
     mb.setBox(.flat);
     menubar.addMenuItems(mb, buf, win);
-    var display = try text.TextDisplay(.normal).init(.{});
+    var display = try text.TextDisplay.init(.{});
     display.setBuffer(buf);
     styles.styleDisplay(display);
     flex.end();

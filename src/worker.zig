@@ -7,7 +7,7 @@ const c = @cImport({
 
 pub fn threadFunc(data: ?*anyopaque) !void {
     if (data) |d| {
-        var disp = text.TextDisplay(.normal).fromRaw(d);
+        var disp = text.TextDisplay.fromRaw(d);
         var tbuf = disp.buffer().?;
         var sbuf = disp.styleBuffer().?;
         var last: [1024]u8 = undefined;
