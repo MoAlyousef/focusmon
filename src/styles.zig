@@ -26,6 +26,6 @@ pub fn styleDisplay(display: *text.TextDisplay) void {
             .size = 16,
         },
     };
-    var sbuf = try text.TextBuffer.init();
+    const sbuf = try text.TextBuffer.init();
     display.setHighlightData(sbuf, &entries);
 }

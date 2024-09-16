@@ -17,7 +17,7 @@ const styles = @import("styles.zig");
 pub fn main() !void {
     try app.init();
     styles.styleApp();
-    var buf = try text.TextBuffer.init();
+    const buf = try text.TextBuffer.init();
     var win = try window.Window.init(.{.x=100, .y=100, .w = 800, .h = 600, .label = "FocusMon"});
     var flex = try Flex.init(.{.x = 2, .y = 2, .w = 796, .h = 596, .spacing = 5});
     flex.setMargin(2);

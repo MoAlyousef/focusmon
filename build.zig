@@ -7,14 +7,14 @@ pub fn build(b: *Build) !void {
     const mode = b.standardOptimizeOption(.{});
     const exe = b.addExecutable(.{
         .name = "focusmon",
-        .root_source_file = .{.path = "src/main.zig" },
+        .root_source_file = b.path("src/main.zig"),
         .optimize = mode,
         .target = target,
     });
 
     const sdk = try Sdk.init(b);
     const zfltk_module = sdk.getZfltkModule(b);
-    exe.addModule("zfltk", zfltk_module);
+    exe.root_module.addImport("zfltk", zfltk_module);
     try sdk.link(exe);
 
     b.installArtifact(exe);
