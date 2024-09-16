@@ -22,8 +22,8 @@ pub fn threadFunc(data: ?*anyopaque) !void {
                     var buffer: [1024]u8 = undefined;
                     if (c.QueryFullProcessImageNameA(h, 0, &buffer, &buffSize) != 0) {
                         if (!std.mem.eql(u8, last[0..buffSize], buffer[0..buffSize])) {
-                            std.mem.copy(u8, &last, buffer[0..buffSize]);
-                            var buf: [1024]u8 = undefined;
+                            @memcpy(&last, buffer[0..buffSize]);
+                            var buf: [1024:0]u8 = undefined;
                             const t = c.time(null);
                             const lt = c.localtime(&t);
                             _ = c.strftime(&buf, 1024, "%H:%M:%S: ", lt);
