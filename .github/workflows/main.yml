@@ -9,6 +9,8 @@ on:
 jobs:
   build_windows:
     runs-on: windows-latest
+    env: 
+      MINGW_PREFIX: "C:\\"
     steps:
       - uses: actions/checkout@v2
       - uses: goto-bus-stop/setup-zig@v2
@@ -20,4 +22,4 @@ jobs:
           cd cfltk && ./scripts/bootstrap_common.sh
       - name: build
         shell: bash
-        run: LDFLAGS="-L/lib" CFLAGS="-I/include" zig build --search-prefix "C:/Program Files/Git/"
+        run: LDFLAGS="-LC:\\lib" CFLAGS="-IC:\\include" zig build --search-prefix "C:\\"
