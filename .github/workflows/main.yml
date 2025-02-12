@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: goto-bus-stop/setup-zig@v2
-        with:
-          version: 0.13.0
       - uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Get cfltk
+        shell: bash
+        run: |
+          git clone https://github.com/MoAlyousef/cfltk --depth=1 --recurse-submodules
+          cd cfltk && ./scripts/bootstrap_common.sh
       - name: build
         shell: bash
         run: zig build

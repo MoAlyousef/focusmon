@@ -1,15 +1,15 @@
 .{
     .name = "focusmon",
     .version = "0.0.1",
+    .dependencies = .{
+        .zfltk = .{
+            .url = "https://github.com/MoAlyousef/zfltk/archive/refs/heads/main.zip",
+            .hash = "1220c4bce9962f5636a58a99b466324fd0f362071e157380a7a0b114ee36ef1639fd",
+        },
+    },
     .paths = .{
         "src",
         "build.zig",
         "build.zig.zon",
     },
-    .dependencies = .{
-        .zfltk = .{
-            .url = "https://github.com/MoAlyousef/zfltk/archive/refs/tags/pkg0.6.0.tar.gz",
-            .hash = "1220ed324e831cbcfffdade82d578f2c24eac577facb481951a8f6a8e491eb51d1b8"
-        },
-    }
 }

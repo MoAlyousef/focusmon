@@ -1,5 +1,4 @@
 const std = @import("std");
-const Sdk = @import("zfltk");
 const Build = std.Build;
 
 pub fn build(b: *Build) !void {
@@ -12,10 +11,11 @@ pub fn build(b: *Build) !void {
         .target = target,
     });
 
-    const sdk = try Sdk.init(b);
-    const zfltk_module = sdk.getZfltkModule(b);
-    exe.root_module.addImport("zfltk", zfltk_module);
-    try sdk.link(exe);
+    const zfltk = b.dependency("zfltk", .{
+        .target = target,
+        .optimize = mode,
+    });
+    exe.root_module.addImport("zfltk", zfltk.module("zfltk"));
 
     b.installArtifact(exe);
 
