@@ -20,4 +20,4 @@ jobs:
           cd cfltk && ./scripts/bootstrap_common.sh
       - name: build
         shell: bash
-        run: zig build
+        run: LDFLAGS="-L/lib" CFLAGS="-I/include" zig build
