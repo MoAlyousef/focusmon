@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           git clone https://github.com/MoAlyousef/cfltk --depth=1 --recurse-submodules
-          cd cfltk && ./scripts/bootstrap_posix.sh -DCMAKE_INSTALL_PREFIX=$CFLTK_PREFIX
+          cd cfltk && ./scripts/bootstrap_posix.sh -GNinja -DCMAKE_INSTALL_PREFIX=$CFLTK_PREFIX
       - name: build
         shell: bash
         run: zig build --search-prefix $CFLTK_PREFIX
