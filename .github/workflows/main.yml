@@ -10,7 +10,7 @@ jobs:
   build_windows:
     runs-on: windows-latest
     env: 
-      MINGW_PREFIX: "C:\\cfltk"
+      CFLTK_PREFIX: "C:\\cfltk"
     steps:
       - uses: actions/checkout@v2
       - uses: goto-bus-stop/setup-zig@v2
@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           git clone https://github.com/MoAlyousef/cfltk --depth=1 --recurse-submodules
-          cd cfltk && ./scripts/bootstrap_common.sh
+          cd cfltk && ./scripts/bootstrap_posix.sh -DCMAKE_INSTALL_PREFIX=$CFLTK_PREFIX
       - name: build
         shell: bash
-        run: zig build --search-prefix $MINGW_PREFIX
+        run: zig build --search-prefix $CFLTK_PREFIX
